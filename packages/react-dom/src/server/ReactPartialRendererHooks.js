@@ -365,7 +365,10 @@ function useMemo<T>(nextCreate: () => T, deps: Array<mixed> | void | null): T {
   if (__DEV__) {
     isInHookUserCodeInDev = false;
   }
-  workInProgressHook.memoizedState = [nextValue, nextDeps];
+
+  if (workInProgressHook) {
+    workInProgressHook.memoizedState = [nextValue, nextDeps];
+  }
   return nextValue;
 }
 
